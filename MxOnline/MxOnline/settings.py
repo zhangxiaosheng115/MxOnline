@@ -31,9 +31,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# 自定义的登录校验接口,其实都是返回的数据库中的object
+AUTHENTICATION_BACKENDS = (
+    'users.views.CustomBackend',
+)
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',  # 自带的admin后台管理app
     'django.contrib.auth',
@@ -45,9 +48,9 @@ INSTALLED_APPS = [
     'courses',
     'organization',
     'operation',
-
     'xadmin',  # xadmin app 更加强大的后台管理系统
     'crispy_forms',  # 也是xadmin依赖的
+    'captcha',  # 用来做图片验证码的app
 ]
 
 
@@ -56,7 +59,7 @@ AUTH_USER_MODEL = "users.User"
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',  # 在这一个中间件中就处理了sessions信息
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -137,5 +140,23 @@ USE_TZ = False  # 在数据库存储时不使用UTC时间，使用本地时间
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+# media 文件
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#---------------------邮件发送配置begin——————————————————#
+EMAIL_HOST = "smtp.sina.com"  # SMTP服务器：smtp.sina.com
+EMAIL_PORT = 25
+EMAIL_HOST_USER = "lukes_zxs@sina.com"  # django登录这个邮箱发邮件
+EMAIL_HOST_PASSWORD = "qq707115"
+EMAIL_USE_TLS = False
+EMAIL_FROM = "lukes_zxs@sina.com"
+#---------------------邮件发送配置  end——————————————————#

@@ -32,3 +32,13 @@ class BaseSetting(object):
 
 xadmin.site.register(views.BaseAdminView, BaseSetting)
 
+
+class GlobalSetting(object):
+    """
+    修改主题以及底部标题
+    """
+    site_title = u"慕学后台管理系统"
+    site_footer = u"慕学在线网"
+    menu_style = "accordion"  # 使菜单栏可以折叠
+
+xadmin.site.register(views.CommAdminView, GlobalSetting)

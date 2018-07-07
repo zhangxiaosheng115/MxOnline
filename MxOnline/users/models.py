@@ -29,9 +29,9 @@ class EmailVerifyRecord(models.Model):  # TODO 将所有数据的操作放在类
     """
     邮箱验证码存储，验证码存储用redis实现更方便，后续修改
     """
-    code = models.CharField(max_length=10, verbose_name=u"验证码")
+    code = models.CharField(max_length=32, verbose_name=u"验证码")
     email = models.EmailField(max_length=20, verbose_name=u"邮箱")
-    code_type = models.CharField(choices=(("register", u"注册"), ("forget", u"找回密码")),
+    code_type = models.CharField(choices=(("register", u"注册激活"), ("forget", u"找回密码")),
                                  max_length=20, verbose_name=u"验证码类型")
     send_time = models.DateTimeField(default=datetime.now, verbose_name=u"发送验证码时间")
 
