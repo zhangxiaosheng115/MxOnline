@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'xadmin',  # xadmin app 更加强大的后台管理系统
     'crispy_forms',  # 也是xadmin依赖的
     'captcha',  # 用来做图片验证码的app
+    'pure_pagination',  # 用来做分页功能的库
 ]
 
 
@@ -82,6 +83,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.media',  # 这个配置让前端能获取到media下的图片，注册到前端页面
             ],
         },
     },

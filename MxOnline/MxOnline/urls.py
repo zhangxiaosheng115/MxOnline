@@ -18,8 +18,11 @@ from django.conf.urls import url, include
 from django.contrib import admin
 import xadmin  # xadmin
 from django.views.generic import TemplateView  # django用来处理直接返回静态页面的类,没有后天逻辑时可以使用
+from django.views.static import  serve
 
+from MxOnline.settings import MEDIA_ROOT
 from users import views as user
+from organization import views as org
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
@@ -43,4 +46,8 @@ urlpatterns = [
     url(r'^reset_pwd/(?P<active_code>.*)/$', user.ResetPwdView.as_view(), name="reset_pwd"),
     url(r'modify_pwd/$', user.ModifyPwdView.as_view(), name='modify_pwd'),
 
+    url(r'org_list/$', org.OrgListView.as_view(), name="org_list"),
+
+    # media 请求路径
+    url(r'^media/(?P<path>.*)/$', serve, {"document_root": MEDIA_ROOT}),
 ]

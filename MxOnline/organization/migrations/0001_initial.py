@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                 ('desc', models.TextField(verbose_name='\u673a\u6784\u7684\u63cf\u8ff0')),
                 ('click_nums', models.IntegerField(default=0, verbose_name='\u673a\u6784\u7684\u70b9\u51fb\u6570')),
                 ('fav_nums', models.IntegerField(default=0, verbose_name='\u673a\u6784\u7684\u6536\u85cf\u6570')),
-                ('image', models.ImageField(upload_to='/org/%Y/%m', verbose_name='\u673a\u6784\u56fe\u7247\u5730\u5740')),
+                ('image', models.ImageField(upload_to='org/%Y/%m', verbose_name='\u673a\u6784\u56fe\u7247\u5730\u5740')),
                 ('address', models.CharField(max_length=150, verbose_name='\u673a\u6784\u7684\u5177\u4f53\u5730\u5740')),
                 ('add_time', models.DateTimeField(default=datetime.datetime.now, verbose_name='\u6dfb\u52a0\u65f6\u95f4')),
                 ('city', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='organization.City', verbose_name='\u673a\u6784\u6240\u5c5e\u57ce\u5e02')),
